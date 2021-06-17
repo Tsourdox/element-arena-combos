@@ -61,14 +61,22 @@ function renderSets(sets) {
     main.innerHTML = "";
     for (const set of sets) {
         const itemNames = set.split(',');
-        const div = document.createElement('div');
+        const section = document.createElement('section');
         for (const itemName of itemNames) {
             const item = items.find((item) => item.name === itemName);
+            const div = document.createElement('div');
             const image = document.createElement('img');
+            const span = document.createElement('span');
+            
+            span.innerHTML = item.dotaItem;
+            span.className = "tooltiptext";
             image.src = "images/" + item.image;
+            
+            div.append(span);
             div.append(image);
+            section.append(div)
         }
 
-        main.append(div);
+        main.append(section);
     }
 }

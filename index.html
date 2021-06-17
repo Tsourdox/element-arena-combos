@@ -10,15 +10,7 @@
 
     <style>
         body { background: #1A1A1A; }
-        img {
-            width: 88px;
-            height: 64px;
-            object-fit: cover;
-            object-position: left;
-        }
-        div {
-            margin-bottom: .4rem;
-        }
+        
         input {
             font-size: 1.3rem;
             margin-bottom: 2rem;
@@ -28,6 +20,40 @@
             outline-width: 0;
             border: none;
             padding: 1rem;
+        }
+
+        img {
+            width: 88px;
+            height: 64px;
+            object-fit: cover;
+            object-position: left;
+        }
+        section {
+            margin-bottom: .4rem;
+            display: flex;
+        }
+        
+        div {
+            display: flex;
+            position: relative;
+        }
+
+        div .tooltiptext {
+            visibility: hidden;
+            position: absolute;
+            width: 88px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1A1A1A88;
+            color: #fff;
+            text-align: center;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        div:hover .tooltiptext {
+            visibility: visible;
         }
     </style>
 </head>

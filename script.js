@@ -1,16 +1,25 @@
 window.addEventListener('load', main);
 
 const sets = new Set();
+let filteredSets = [];
+let showOrignalItem = false;
 
 function main() {
     addEventListeners();
     findSets()
-    renderSets(sets);
+    renderSets();
 }
 
 function addEventListeners() {
-    const input = document.querySelector('input');
-    input.addEventListener('input', filterSets);
+    const searchInput = document.querySelector('input.search');
+    searchInput.addEventListener('input', filterSets);
+    const checkbox = document.querySelector('input.checkbox');
+    checkbox.addEventListener('input', toggleShowOriginalItem);
+}
+
+function toggleShowOriginalItem(event) {
+    showOrignalItem = event.target.checked;
+    renderSets();
 }
 
 function findSets() {
@@ -41,25 +50,24 @@ function findSets() {
                 const itemMatch = [item1.name, item2.name, item3.name].sort().join(',');
                 sets.add(itemMatch);
             }
-    
         }
-    
     }
+    filteredSets = Array.from(sets.values());
 }
 
 function filterSets(event) {
     const query = event.target.value;
     const listOfSets = Array.from(sets.values());
-    const fileteredSets = listOfSets.filter(s =>
+    filteredSets = listOfSets.filter(s =>
         s.toLowerCase().includes(query.toLowerCase())
     );
-    renderSets(fileteredSets);
+    renderSets();
 }
 
-function renderSets(sets) {
+function renderSets() {
     const main = document.querySelector('main');
     main.innerHTML = "";
-    for (const set of sets) {
+    for (const set of filteredSets) {
         const itemNames = set.split(',');
         const section = document.createElement('section');
         for (const itemName of itemNames) {
@@ -68,7 +76,7 @@ function renderSets(sets) {
             const image = document.createElement('img');
             const span = document.createElement('span');
             
-            span.innerHTML = item.dotaItem;
+            span.innerHTML = showOrignalItem ? item.dotaItem : item.name;
             span.className = "tooltiptext";
             image.src = "images/" + item.image;
             

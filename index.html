@@ -9,17 +9,28 @@
     <script src="./script.js"></script>
 
     <style>
-        body { background: #1A1A1A; }
+        body {
+            background: #1A1A1A;
+            color: white;
+            font-family: Helvetica, Arial, sans-serif;
+        }
         
-        input {
+        input.search {
             font-size: 1.3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             width: calc(100% - 2rem);
             background: black;
             color: white;
             outline-width: 0;
             border: none;
             padding: 1rem;
+        }
+        input.checkbox {
+            margin-bottom: 3rem;
+        }
+        label.checkbox {
+            font-size: 1.1rem;
+            color: #EFEFEF;
         }
 
         img {
@@ -49,7 +60,6 @@
             background-color: #1A1A1A88;
             color: #fff;
             text-align: center;
-            font-family: Helvetica, Arial, sans-serif;
         }
 
         div:hover .tooltiptext {
@@ -58,7 +68,13 @@
     </style>
 </head>
 <body>
-    <input placeholder="Search for item">
+    <input class="search" type="text" placeholder="Search for item">
+    
+    <input class="checkbox" id="checkbox" name="checkbox" type="checkbox">
+    <label class="checkbox" for="checkbox">
+        Show which Dota 2 item to combine with on hover
+    </label>
+    
     <main>
         <!-- Set of items shown here -->
     </main>

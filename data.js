@@ -17,7 +17,7 @@ const items = [{
     dotaItem: "Radiance"
 }, {
     name: "Life of Spear",
-    orbs: [light, light, earth],
+    orbs: [light, life, earth],
     image: "item_light_life_earth.png",
     dotaItem: "Guardian Greaves"
 }, {

@@ -77,9 +77,12 @@ function filterSets(event) {
         threshold: 0.15,
         keys: ['items.name', 'items.dotaItem']
     }
-      
-    const fuse = new Fuse(foundSets, options)
-    filteredSets = fuse.search(query).map(r => r.item);
+    if (!query) {
+        filteredSets = foundSets;
+    } else {
+        const fuse = new Fuse(foundSets, options)
+        filteredSets = fuse.search(query).map(r => r.item);
+    }
     renderSets();
 }
 

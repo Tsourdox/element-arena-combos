@@ -1,0 +1,56 @@
+body {
+    background: #1A1A1A;
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+input.search {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    width: calc(100% - 2rem);
+    background: black;
+    color: white;
+    outline-width: 0;
+    border: none;
+    padding: 1rem;
+}
+input.checkbox {
+    margin-bottom: 3rem;
+}
+label.checkbox {
+    font-size: 1.1rem;
+    color: #EFEFEF;
+}
+
+img {
+    width: 88px;
+    height: 64px;
+    object-fit: cover;
+    object-position: left;
+}
+section {
+    margin-bottom: .4rem;
+    display: flex;
+}
+
+div {
+    display: flex;
+    position: relative;
+}
+
+div .tooltiptext {
+    visibility: hidden;
+    position: absolute;
+    width: 88px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1A1A1A88;
+    color: #fff;
+    text-align: center;
+}
+
+div:hover .tooltiptext {
+    visibility: visible;
+}

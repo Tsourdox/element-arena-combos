@@ -5,74 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Element Arena Item Combos</title>
-    <script src="./data.js"></script>
-    <script src="./script.js"></script>
-
-    <style>
-        body {
-            background: #1A1A1A;
-            color: white;
-            font-family: Helvetica, Arial, sans-serif;
-        }
-        
-        input.search {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            width: calc(100% - 2rem);
-            background: black;
-            color: white;
-            outline-width: 0;
-            border: none;
-            padding: 1rem;
-        }
-        input.checkbox {
-            margin-bottom: 3rem;
-        }
-        label.checkbox {
-            font-size: 1.1rem;
-            color: #EFEFEF;
-        }
-
-        img {
-            width: 88px;
-            height: 64px;
-            object-fit: cover;
-            object-position: left;
-        }
-        section {
-            margin-bottom: .4rem;
-            display: flex;
-        }
-        
-        div {
-            display: flex;
-            position: relative;
-        }
-
-        div .tooltiptext {
-            visibility: hidden;
-            position: absolute;
-            width: 88px;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #1A1A1A88;
-            color: #fff;
-            text-align: center;
-        }
-
-        div:hover .tooltiptext {
-            visibility: visible;
-        }
-    </style>
+    <script async defer src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6"></script>
+    <script async defer src="./data.js"></script>
+    <script async defer src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <input class="search" type="text" placeholder="Search for item">
+    <input class="search" type="text" placeholder="Search for EA or Dota item">
     
     <input class="checkbox" id="checkbox" name="checkbox" type="checkbox">
     <label class="checkbox" for="checkbox">
-        Show which Dota 2 item to combine with on hover
+        Show combining Dota 2 item on hover
     </label>
     
     <main>

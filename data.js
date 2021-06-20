@@ -10,7 +10,7 @@ const air = "air";
 const light = "light";
 const shadow = "shadow";
 
-const items = [{
+const data = [{
     name: "Fire Sword",
     orbs: [fire, earth, light],
     image: "item_light_fire_earth.png",

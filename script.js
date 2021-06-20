@@ -1,6 +1,7 @@
 window.addEventListener('load', main);
 
-const sets = new Set();
+
+let foundSets = [];
 let filteredSets = [];
 let showOrignalItem = false;
 
@@ -23,11 +24,13 @@ function toggleShowOriginalItem(event) {
 }
 
 function findSets() {
-    for (const item1 of items) {
-        for (const item2 of items) {
+    // Use set to easy get unique results
+    const setStrings = new Set();
+    for (const item1 of data) {
+        for (const item2 of data) {
             if (item2 === item1) continue;
             
-            for (const item3 of items) {
+            for (const item3 of data) {
                 if (item3 === item1 || item3 === item1) continue;
     
                 const orbs = [...item1.orbs, ...item2.orbs, ...item3.orbs]
@@ -48,19 +51,35 @@ function findSets() {
                 if (exceededOrbs) continue;
     
                 const itemMatch = [item1.name, item2.name, item3.name].sort().join(',');
-                sets.add(itemMatch);
+                setStrings.add(itemMatch);
             }
         }
     }
-    filteredSets = Array.from(sets.values());
+    const setStringsAsArray = Array.from(setStrings.values());
+    rebuildObjects(setStringsAsArray);
+}
+
+function rebuildObjects(setStrings) {
+    const sets = [];
+    for (const setString of setStrings) {
+        const itemNames = setString.split(',');
+        const items = itemNames.map(itemName =>
+            data.find(item => item.name === itemName));
+        sets.push({ items });
+    }
+    foundSets = sets;
+    filteredSets = sets;
 }
 
 function filterSets(event) {
     const query = event.target.value;
-    const listOfSets = Array.from(sets.values());
-    filteredSets = listOfSets.filter(s =>
-        s.toLowerCase().includes(query.toLowerCase())
-    );
+    const options = {
+        threshold: 0.15,
+        keys: ['items.name', 'items.dotaItem']
+    }
+      
+    const fuse = new Fuse(foundSets, options)
+    filteredSets = fuse.search(query).map(r => r.item);
     renderSets();
 }
 
@@ -68,10 +87,8 @@ function renderSets() {
     const main = document.querySelector('main');
     main.innerHTML = "";
     for (const set of filteredSets) {
-        const itemNames = set.split(',');
         const section = document.createElement('section');
-        for (const itemName of itemNames) {
-            const item = items.find((item) => item.name === itemName);
+        for (const item of set.items) {
             const div = document.createElement('div');
             const image = document.createElement('img');
             const span = document.createElement('span');
